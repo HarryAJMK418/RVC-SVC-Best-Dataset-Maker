@@ -48,7 +48,7 @@ To use the application, follow these steps:
 The application will remove silence from the audio files and split each file into segments of the specified duration. The segments will be saved as separate audio files and compressed into a zip file named audio_segments.zip in the same directory as the script.
 
 
-Notes: 
+# Notes: 
 
 . It Might Take A Lot Of Time For Many Audios Might Even Not Respond But It Will Get Completed Just Keep Patience!
 
