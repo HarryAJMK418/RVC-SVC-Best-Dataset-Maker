@@ -13,6 +13,12 @@ To install these dependencies, run the following command:
 pip install pydub tkinter
 ```
 
+#Running the application
+To run the application, navigate to the directory containing the script, open a terminal or command prompt, and enter the following command:
+
+``bash
+python gui.py
+``
 
 How To Make THE BEST DATASET -
 1) Download All Songs From Either https://spotifydown.com/ Or https://yt2mp3.info/?l=en (Make Sure ALL AUDIOS ARE OF WAV FORMAT BEFORE RUNNING THE SCRIPT)
