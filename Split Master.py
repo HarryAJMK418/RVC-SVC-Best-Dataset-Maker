@@ -5,19 +5,16 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
 
-
 def browse_audio_files():
     file_paths = filedialog.askopenfilenames(title="Select Audio Files", filetypes=[("Audio Files", "*.wav;*.mp3")])
     audio_files_list.delete(0, tk.END)
     for file_path in file_paths:
         audio_files_list.insert(tk.END, file_path)
 
-
 def remove_silence(audio):
     # Remove silence
     non_silent_audio = silence.split_on_silence(audio, min_silence_len=1000, silence_thresh=-40)
     return non_silent_audio
-
 
 def join_audio_segments(segments, segment_duration):
     joined_segments = []
@@ -32,7 +29,13 @@ def join_audio_segments(segments, segment_duration):
             current_segment = segment
 
     if current_segment is not None:
-        joined_segments.append(current_segment)
+        if current_segment.duration_seconds < segment_duration:
+            if joined_segments:
+                joined_segments[-1] += current_segment
+            else:
+                joined_segments.append(current_segment)
+        else:
+            joined_segments.append(current_segment)
 
     return joined_segments
 
@@ -81,7 +84,6 @@ def split_audio_files():
 
     messagebox.showinfo("Info", f"Audio segments have been saved to {zip_file_name}.")
 
-
 # Create main window
 root = tk.Tk()
 root.title("Audio Splitter")
@@ -106,4 +108,3 @@ split_button = tk.Button(root, text="Split Audio Files", command=split_audio_fil
 split_button.grid(row=2, column=1, pady=10)
 
 root.mainloop()
-
