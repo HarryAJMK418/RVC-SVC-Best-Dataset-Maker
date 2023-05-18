@@ -1,67 +1,54 @@
-# RVC-SVC-Best-Dataset-Maker
-RVC/SVC Best Dataset Maker Allows You To Make The Best Datasets FOR RVC/SVC Voice Models
+# Audio Splitter
 
-Features: It Removes Silenced Parts From Audio And Then Split The Audio In As many numbers Of Second U Want And Add It In A Zip Automatically, Enjoy!
+Audio Splitter is a Python application that allows you to split audio files into smaller segments based on duration and remove silent parts. It provides a graphical user interface (GUI) built with PyQt5 and utilizes the PyDub library for audio processing.
 
-# Prerequisites
+## Features
 
-Before running the application, you need to have Python installed on your system. You can download Python from [here](https://www.python.org/downloads/). This application was developed with Python 3.8, but it should work with other versions as well.
+- Add audio files in various formats (MP3, WAV, FLAC, OGG, M4A)
+- Specify the segment duration in seconds
+- Adjust the silence threshold to remove silent parts
+- Choose the output format for the audio segments
+- Monitor progress with a progress bar
+- Export the segmented audio files as a zip archive
 
-To install these dependencies, run the following command:
+## Requirements
 
-```shell
-pip install pydub tkinter
+- Python 3.6 or higher
+- PyQt5
+- PyDub
+- FFmpeg (required by PyDub for audio file processing)
+
+## Installation
+
+1. Clone the repository or download the source code.
+2. Install the required dependencies:
+   ```bash
+   pip install pyqt5 pydub
+   ```
+3. Install FFmpeg. Refer to the FFmpeg documentation for installation instructions based on your operating system.
+
+
+# Usage
+
+To run the application, execute the following command:
+```bash
+python audio_splitter.py
 ```
 
-#Running the application
-To run the application, navigate to the directory containing the script, open a terminal or command prompt, and enter the following command:
+The application window will open, providing the following options:
 
-``bash
-python gui.py
-``
+. Add Files: Click this button to select audio files to process.
+. Remove Selected Files: Remove the selected audio files from the list.
+. Clear All Files: Remove all audio files from the list.
+. Segment Duration: Enter the desired duration in seconds for each segment.
+. Silence Threshold: Adjust the silence threshold in decibels (dB) to detect and remove silent parts.
+. Output Format: Select the desired output format for the segmented audio files.
+. Start: Click this button to start the segmentation process.
+. Progress Bar: Shows the progress of the segmentation process.
+. Finished: Indicates the completion of the segmentation process and the location of the generated zip file.
 
-How To Make THE BEST DATASET -
-1) Download All Songs From Either https://spotifydown.com/ Or https://yt2mp3.info/?l=en (Make Sure ALL AUDIOS ARE OF WAV FORMAT BEFORE RUNNING THE SCRIPT)
-2) Remove Instrumentals Of ALL SONGS Using Either https://studio.gaudiolab.io/gsep Or Ultimate Vocal Remover
-3) Download The Python Script Uploaded Here
-4) Run The Script
-5) Select All The Audio
-6) Write Segment Duration (Recommended For Models: 10 Seconds)
-7) Press Split Audio Files(It Will Take Some Time)
-8) When There Is A Pop Up Of Audios Has Been Splitted, Your Work Has Done!
-9) There Will Be A Zip Named "audio_segments" It Will Have The All Audios Files!
+Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-
-# Using the application
-The application presents a GUI with the following elements:
-
-1. Browse button: Allows you to select one or more audio files (.wav or .mp3 format) from your file system.
-
-2. Segment Duration field: Allows you to specify the duration (in seconds) for each segment of audio.
-
-3. Split Audio Files button: Begins the process of splitting the selected audio files.
-
-4. Progress bar: Displays the progress of the splitting process.
-
-To use the application, follow these steps:
-
-1. Click the "Browse" button and select one or more audio files.
-
-2. Enter a segment duration (in seconds) into the "Segment Duration" field.
-
-3. Click the "Split Audio Files" button.
-
-The application will remove silence from the audio files and split each file into segments of the specified duration. The segments will be saved as separate audio files and compressed into a zip file named audio_segments.zip in the same directory as the script.
-
-
-# Notes: 
-
-. It Might Take A Lot Of Time For Many Audios Might Even Not Respond But It Will Get Completed Just Keep Patience!
-
-. The application removes silence from audio files based on pydub's split_on_silence function, which considers anything quieter than -40 dBFS as silence.
-
-. The script is designed to handle large audio files and uses multiprocessing to speed up the splitting process.
-
-. The script will notify you with a popup message once all the audio files have been successfully split.
-
-. The resulting segments are saved in the same format as the input audio files.
+License
+This project is licensed under the MIT License.
