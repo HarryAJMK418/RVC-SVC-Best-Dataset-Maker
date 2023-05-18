@@ -37,15 +37,15 @@ python audio_splitter.py
 
 The application window will open, providing the following options:
 
-. Add Files: Click this button to select audio files to process.
-. Remove Selected Files: Remove the selected audio files from the list.
-. Clear All Files: Remove all audio files from the list.
-. Segment Duration: Enter the desired duration in seconds for each segment.
-. Silence Threshold: Adjust the silence threshold in decibels (dB) to detect and remove silent parts.
-. Output Format: Select the desired output format for the segmented audio files.
-. Start: Click this button to start the segmentation process.
-. Progress Bar: Shows the progress of the segmentation process.
-. Finished: Indicates the completion of the segmentation process and the location of the generated zip file.
+- Add Files: Click this button to select audio files to process.
+- Remove Selected Files: Remove the selected audio files from the list.
+- Clear All Files: Remove all audio files from the list.
+- Segment Duration: Enter the desired duration in seconds for each segment.
+- Silence Threshold: Adjust the silence threshold in decibels (dB) to detect and remove silent parts.
+- Output Format: Select the desired output format for the segmented audio files.
+- Start: Click this button to start the segmentation process.
+- Progress Bar: Shows the progress of the segmentation process.
+- Finished: Indicates the completion of the segmentation process and the location of the generated zip file.
 
 Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
