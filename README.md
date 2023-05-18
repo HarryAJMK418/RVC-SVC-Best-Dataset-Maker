@@ -22,6 +22,7 @@ Audio Splitter is a Python application that allows you to split audio files into
 
 1. Clone the repository or download the source code.
 2. Install the required dependencies:
+
    ```bash
    pip install pyqt5 pydub
    ```
@@ -31,6 +32,7 @@ Audio Splitter is a Python application that allows you to split audio files into
 # Usage
 
 To run the application, execute the following command:
+
 ```bash
 python audio_splitter.py
 ```
