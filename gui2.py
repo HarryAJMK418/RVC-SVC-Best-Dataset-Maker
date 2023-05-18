@@ -4,6 +4,7 @@ import tempfile
 import zipfile
 import multiprocessing as mp
 from pydub import AudioSegment, silence
+from PyQt5 import QtCore
 from PyQt5.QtGui import QFont, QIntValidator, QBrush, QColor
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget, QProgressBar, QListWidget, QListWidgetItem, QLineEdit, QFileDialog, QApplication, QSlider, QMessageBox, QComboBox
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
@@ -49,8 +50,8 @@ def process_audio_file(audio_file_path, i, segment_duration, silence_thresh=-40,
     temp_files = []
     for k, segment in enumerate(joined_segments):
         segment_file_name = f"segment_{i + 1}_{k + 1}.{output_format}"
-        temp_file = tempfile.NamedTemporaryFile(delete=False)
-        segment.export(temp_file.name, format=output_format)
+        temp_file = tempfile.NamedTemporaryFile(suffix=f".{output_format}", delete=False)
+        segment_file_name = f"segment_{i + 1}_{k + 1}.{output_format}"
         temp_files.append((segment_file_name, temp_file.name))
 
     return temp_files
@@ -323,6 +324,7 @@ class FileListWidget(QListWidget):
 
 
 def main():
+    QtCore.QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
 
     main_window = MainWindow()
