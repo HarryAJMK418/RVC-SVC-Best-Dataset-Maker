@@ -47,8 +47,10 @@ The application window will open, providing the following options:
 - Progress Bar: Shows the progress of the segmentation process.
 - Finished: Indicates the completion of the segmentation process and the location of the generated zip file.
 
-Contributing
+# Contributing
+
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-License
+# License
+
 This project is licensed under the MIT License.
