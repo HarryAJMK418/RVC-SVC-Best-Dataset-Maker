@@ -1,3 +1,17 @@
+"""
+Audio Splitter - a tool for splitting audio files
+Author: Justin John
+Date: 2023-05-19
+
+This script uses PyQt5 and other libraries to create an application for splitting 
+audio files based on silence detection.
+
+This software is licensed under the MIT License. You are free to redistribute, modify, 
+or sell this software under the conditions stated in the license.
+
+For more information, contact the author at justinjohn0306@gmail.com.
+"""
+
 import os
 import sys
 import tempfile
@@ -6,8 +20,12 @@ import multiprocessing as mp
 from pydub import AudioSegment, silence
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont, QIntValidator, QBrush, QColor
-from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget, QProgressBar, QListWidget, QListWidgetItem, QLineEdit, QFileDialog, QApplication, QSlider, QMessageBox, QComboBox
+from PyQt5.QtWidgets import (QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget, 
+                             QProgressBar, QListWidget, QListWidgetItem, QLineEdit, 
+                             QFileDialog, QApplication, QSlider, QMessageBox, QComboBox, 
+                             QHBoxLayout)
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
+
 
 
 def remove_silence(audio, silence_thresh=-40):
@@ -49,12 +67,13 @@ def process_audio_file(audio_file_path, i, segment_duration, silence_thresh=-40,
 
     temp_files = []
     for k, segment in enumerate(joined_segments):
-        segment_file_name = f"segment_{i + 1}_{k + 1}.{output_format}"
         temp_file = tempfile.NamedTemporaryFile(suffix=f".{output_format}", delete=False)
+        segment.export(temp_file.name, format=output_format)  # Write segment to the temp file
         segment_file_name = f"segment_{i + 1}_{k + 1}.{output_format}"
         temp_files.append((segment_file_name, temp_file.name))
 
     return temp_files
+
 
 
 def process_audio_files(audio_files, segment_duration, silence_thresh, output_format, progress_queue):
@@ -228,6 +247,17 @@ class MainWindow(QMainWindow):
         self.start_button.clicked.connect(self.start)
 
         self.progress_bar = QProgressBar()
+        self.progress_bar.setStyleSheet("""
+            QProgressBar {
+                border: 2px solid grey;
+                border-radius: 5px;
+                text-align: center;
+            }
+            QProgressBar::chunk {
+                background-color: #05B8CC;
+                width: 20px;
+            }
+        """)
 
         self.main_layout.addWidget(self.files_list_label)
         self.main_layout.addWidget(self.files_list)
@@ -242,7 +272,17 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.output_format_label)
         self.main_layout.addWidget(self.output_format_combo)
         self.main_layout.addWidget(self.start_button)
-        self.main_layout.addWidget(self.progress_bar)
+        # Create a horizontal box layout
+        progress_layout = QHBoxLayout()
+
+        # Add stretch on both sides of the progress bar
+        progress_layout.addStretch(1)
+        progress_layout.addWidget(self.progress_bar)
+        progress_layout.addStretch(1)
+
+        # Add the progress layout to the main layout
+        self.main_layout.addLayout(progress_layout)
+
 
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.main_layout)
@@ -334,6 +374,7 @@ def main():
 
 
 if __name__ == "__main__":
+    mp.freeze_support()
     main()
-
-
+    
+    
